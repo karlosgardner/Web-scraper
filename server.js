@@ -39,7 +39,13 @@ app.set('view engine', 'handlebars');
   //mongoose.connect('mongodb://heroku_60zpcwg0:ubn0n27pi2856flqoedo9glvh8@ds119578.mlab.com:19578/heroku_60zpcwg0');
 //}
 
-mongoose.connect("mongodb://heroku_3jvvfxl0:f3765ub0bclo566brvlgfoo5bb@ds163681.mlab.com:63681/heroku_3jvvfxl0");
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI);
+} else{
+    mongoose.connect("mongodb://localhost/scraper");
+}
+
+//mongoose.connect("mongodb://heroku_3jvvfxl0:f3765ub0bclo566brvlgfoo5bb@ds163681.mlab.com:63681/heroku_3jvvfxl0");
 
 var db = mongoose.connection;
 
